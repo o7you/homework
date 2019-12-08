@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FLEX MARKET</title>
+
+	<style type="text/css">
+
+		.mytitle {
+			color: white;
+			text-align: center;
+			/*CSS에서: 항상 url HTML에서 link인 경우: href link가 아닌 경우(이미지, 비디오 등등): src*/
+
+			background-image: url(https://images.news18.com/ibnlive/uploads/2019/08/red1.jpg);
+			background-size: cover;
+			background-position: center;
+			width: 300px;
+			height: 200px;
+			border-radius: 10px;
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.mytitle > h1 {
+			margin: 0 0 5px 0;
+		}
+
+		/*> 왜 들어가는 것인지 궁금*/
+		.mytitle > h5 {
+			margin: 5px 0 0 0;
+		}
+
+		.wrap {
+			width: 300px;
+			margin: 50px auto 0 auto;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+		function hey() {
+			alert('안녕!')
+		}
+
+		function check_adult() {
+			if (person ['age'] < 20) {
+				return true;
+			}
+			else {return false;
+			}
+
+			let person = {'name':'bob','age':'24'}
+			let result = check_adult(person)
+			result
+	 }
+
+	</script>
+
+
+</head>
+<body>
+	<div class= 'wrap'>
+		<div class = 'mytitle'>
+			<h1>FLEX MARKET</h1>
+			<h5>합리적인 구매를 원하는 사람들을 위한 쇼핑몰</h5>
+		</div>
+		<p>
+			OPTION: 
+			<input type="text"/>
+		</p>
+		<p>
+			QUANTITY: <input type="text"/>
+		</p>
+		<button onclick="hey()" type="button" class="btn btn-primary">BUY</button>
+	</div>
+</body>
+</html>

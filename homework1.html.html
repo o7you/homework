@@ -1,78 +1,188 @@
 <!doctype html>
 <html lang="en">
-  <head>
-		
-		<!-- Webpage Title -->
-    <title>shopping mall!</title>
+<head>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Webpage Title -->
+  <title>FLEX MARKET</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		
-		<!-- Javascript -->		
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<style>
-		.wrap {
-    margin top:20; left:0; bottom:20; right:0;
-    width: 70%;
-    height:30%;
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-		}		
+  <!-- Javascript -->		
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <style>
+    .wrap {
+      width: 900px;
+      margin: 50px auto 0 auto;
+
+    }
+
+    .mytitle {
+      color: white;
+      text-align: center;
+      /*CSS에서: 항상 url HTML에서 link인 경우: href link가 아닌 경우(이미지, 비디오 등등): src*/
+
+      background-image: url(https://images.news18.com/ibnlive/uploads/2019/08/red1.jpg);
+      background-size: cover;
+      background-position: center;
+      width: 800px;
+      height: 100px;
+      border-radius: 10px;
+
+      display: block; margin: 0px auto;
+    }
+
+    .mytitle h1 {
+      margin: 0 0 5px 0;
+    }
+
+    .mytitle h5 {
+      margin: 5px 0 0 0;
+    }
+
+    .card-img1 {
+      text-align: center;
+    }
+
+    .card-img1 {
+      width: 400px;
+      height: 300px;
+      display: block; margin: 0px auto;
+      margin-top: 30px;
+    }		
+
+  </style>
+
+  <!-- api -->   
+  <script type="text/javascript">
+
+   $(document).ready(function(){
+    $.ajax({
+      type: "GET",
+      url: "http://spartacodingclub.shop/order",
+      data: {},
+      success: function(response){
+
+        for (let j = 0; j < response['orders'].length; j++) {
+          let name = response['orders'][j]['name']
+          let count = response['orders'][j]['count']
+          let address = response['orders'][j]['address']
+          let phone = response['orders'][j]['phone']
+
+          let temp_html = '<tr>\
+          <th scope="col">'+name+'</th>\
+          <th scope="col">'+count+'</th>\
+          <th scope="col">'+address+'</th>\
+          <th scope="col">'+phone+'</th>\
+          </tr>'
+
+          $('#output').append(temp_html)
+        }
+      }
+    })
+  });
+
+  function orderBtn(){
+   let customerName = $("#flexname").val();
+   let itemQuanity = $("#flexcount").val();
+   let customerAddress = $("#flexaddress").val();
+   let customerPhoneNumber = $("#flexnumber").val();
+   if(customerName == ""){
+    alert("필수 정보를 입력해주세요!");
+    $("#flexname").focus();
+  }
+
+  if(customerAddress == ""){
+    alert("필수 정보를 입력해주세요!");
+    $("#flexaddress").focus();
+  } 
+
+  if(customerPhoneNumber == ""){
+    alert("필수 정보를 입력해주세요!");
+    $("#flexnumber").focus();
+  } 
+
+  if(itemQuanity == "---수량을 선택하세요---"){
+    alert("수량을 선택해주세요!");
+    $("#flexcount").focus();
+  } 
+  else {
+    alert("주문해 주셔서 감사합니다!");
+  }
+
+}
+
+</script>
 
 
-	</style>
-    
-  </head>
-	<body>
-		<div class="wrap">
-			<div class="card">
-	        <img class="card-img-top" 
-	        src="https://images-na.ssl-images-amazon.com/images/I/710rzW2RGcL._SL1500_.jpg" alt="Card image cap">
-	        <div class="card-body">
-	          <p class="card-title"><h2>
-	          상품제목: Apple AirPods</h2>가격: 290,000/개</p>
+</head>
+<body>
+  <div class="wrap">
 
-	          <p class="card-text">이 상품은 에어팟입니다. Apple 자체 디자인으로 간편한 설정으로 당신의 모든 Apple 기기와 셋업할 수 있습니다. "Siri야"라고 부르거나 두 번 탭해서 간편하게 Siri 사용이 가능하고, 케이스에서 빠르게 충전이 가능합니다.</p>
-	        </div>
-
-			<form>
-  <div class="form-group">
-    <label for="exampleInputname">주문자성함</label>
-    <input type="name" class="form-control" id="exampleInputEname">
-  </div>
-
-   <div class="form-group col-md-4">
-   	<h2>주문하기</h2>
-      <label for="inputState">수량</label>
-      <select id="inputState" class="form-control">
-        <option selected>1</option>
-        <option>2</option>
-		<option>3</option>
-      </select>
+    <div class = 'mytitle'>
+      <h1>FLEX MARKET</h1>
+      <h5>합리적인 구매(?)를 원하는 사람들을 위한 쇼핑몰</h5>
     </div>
-
-  <div class="form-group">
-    <label for="exampleInputPassaddress">주소</label>
-    <input type="address" class="form-control" id="exampleInputaddress">
-  </div>
-
-  <div class="form-group">
-    <label for="exampleInputnumber">전화번호</label>
-    <input type="number" class="form-control" id="exampleInputnumber">
-  </div>
-
-  <button type="submit" class="btn btn-primary">주문하기</button>
-</form>
-
-		</div>
+    <div class="card">
+      <p>
+       <img class="card-img1" 
+       src="http://post.phinf.naver.net/MjAxOTA4MjFfNDEg/MDAxNTY2Mzg4Njk2ODk3.hAO4OUwe5XuVktYe_JfBcg45UhZ6QANILBf1kP9P-G4g.KGjv0-zunRQoYaoVjkGuSOWIL_NdpiqroTlhoZUtL7gg.JPEG/I30KDsftIdUhbuBvOQUkvpFvVxRY.jpg" alt="Card image cap">
+     </p>
+     <div class="card-body">
+       <p class="card-title"><h2>
+       상품명: SUPREME 벽돌</h2>가격: 45,000/개</p>
+       <p class="card-text">한때 SNS에서도 유명세를 탔던 슈프림 벽돌입니다. 인테리어 소품으로 활용하기 좋습니다. 우리 모두 벽돌로 플렉스 해 보아요!</p>
+     </div>
+     <form>
+      <div class="form-group">
+        <label for="exampleInputname">주문자성함</label>
+        <input type="name" class="form-control" id="flexname">
       </div>
-
-
-	</body>
+      <div class="form-group col-md-4">
+        <h2>주문하기</h2>
+        <label for="inputState">수량</label>
+        <select onChange="test(this.options[this.selectedIndex].value)" id="flexcount" class="form-control">
+         <option value='1'seleted>1</option>
+         <option value='2'>2</option>
+         <option value='3'>3</option>
+       </select>
+     </div>
+     <div class="form-group">
+      <label for="exampleInputPassaddress">주소</label>
+      <input type="address" class="form-control" id="flexaddress">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputnumber">전화번호</label>
+      <input type="text" class="form-control" id="flexnumber">
+    </div>
+    <div class="order-now">
+      <button id="order-click-btn" onclick="orderBtn()" type="button" class="btn btn-primary order-click">주문하기</button>
+    </div>
+  </form>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">이름</th>
+          <th scope="col">수량</th>
+          <th scope="col">주소</th>
+          <th scope="col">전화번호</th>
+        </tr>
+      </thead>
+      <tbody id="output">
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</body>
 </html>
